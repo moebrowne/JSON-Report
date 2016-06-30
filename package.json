@@ -1,0 +1,13 @@
+{
+  "name": "json-report",
+  "version": "1.0.0",
+  "description": "Turns a JSON object into a nice simple HTML report",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "bootstrap-table": "^1.10.1",
+    "jquery": "^3.0.0"
+  },
+  "devDependencies": {},
+  "author": "MoeBrowne",
+  "license": "GPL-3.0"
+}
