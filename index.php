@@ -10,6 +10,41 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     throw new Exception(json_last_error_msg());
 }
 
+foreach ($json->categories as $categoryName => $category) {
+    foreach ($category->items as $item) {
+
+        switch($item->severity) {
+            case 1:
+                $severityIcon = 'exclamation-sign';
+                $severityIconColour = '#c9302c';
+                break;
+            case 2:
+                $severityIcon = 'remove-circle';
+                $severityIconColour = '#f0ad4e';
+                break;
+            case 3:
+                $severityIcon = 'ok-circle';
+                $severityIconColour = '#5cb85c';
+                break;
+            default:
+                $severityIcon = 'minus';
+                $severityIconColour = '#000000';
+                break;
+        }
+
+        $categoryName = ucwords($categoryName);
+
+        $itemsHTML .= <<<HTML
+        <tr class="table-danger">
+            <td><span class="glyphicon glyphicon-{$severityIcon}" style="color: {$severityIconColour};"></span></td>
+            <td>{$categoryName}</td>
+            <td>{$item->name}</td>
+            <td>{$item->notes}</td>
+        </tr>
+HTML;
+    }
+}
+
 ?>
 
 <!doctype html>
@@ -36,6 +71,18 @@ if (json_last_error() !== JSON_ERROR_NONE) {
         </h1>
     </div>
 
+    <div class="progress">
+        <div class="progress-bar progress-bar-danger" style="width: 5%">
+            <span class="sr-only">10% Complete (danger)</span>
+        </div>
+        <div class="progress-bar progress-bar-warning" style="width: 10%">
+            <span class="sr-only">20% Complete (warning)</span>
+        </div>
+        <div class="progress-bar progress-bar-success" style="width: 85%">
+            <span class="sr-only">35% Complete (success)</span>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
 
@@ -49,38 +96,7 @@ if (json_last_error() !== JSON_ERROR_NONE) {
                 </tr>
                 </thead>
                 <tbody>
-
-<?php foreach ($json->categories as $categoryName => $category) : ?>
-    <?php foreach ($category->items as $item) : ?>
-
-        <?php
-        switch($item->severity) {
-            case 1:
-                $severityIcon = 'exclamation-sign';
-                $severityIconColour = '#c9302c';
-                break;
-            case 2:
-                $severityIcon = 'remove-circle';
-                $severityIconColour = '#f0ad4e';
-                break;
-            case 3:
-                $severityIcon = 'ok-circle';
-                $severityIconColour = '#5cb85c';
-                break;
-            default:
-                $severityIcon = 'minus';
-                $severityIconColour = '#000000';
-                break;
-        }
-        ?>
-                <tr class="table-danger">
-                    <td><span class="glyphicon glyphicon-<?= $severityIcon; ?>" style="color: <?= $severityIconColour; ?>;"></span></td>
-                    <td><?= ucwords($categoryName); ?></td>
-                    <td><?= $item->name; ?></td>
-                    <td><?= htmlentities($item->notes); ?></td>
-                </tr>
-    <?php endforeach; ?>
-<?php endforeach; ?>
+                    <?= $itemsHTML; ?>
                 </tbody>
             </table>
 
