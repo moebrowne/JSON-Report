@@ -1,0 +1,36 @@
+{
+  "title": "JSON Report",
+  "categories": {
+    "Alpha": {
+      "items": [
+        {
+          "name": "Issue One",
+          "severity": 1,
+          "notes": "Some notes about the item"
+        },
+        {
+          "name": "Issue Two",
+          "severity": 2
+        },
+        {
+          "name": "Issue Three",
+          "severity": 3,
+          "notes": "Very important notes"
+        }
+      ]
+    },
+    "Bravo": {
+      "items": [
+        {
+          "name": "Page Speed",
+          "severity": 1,
+          "notes": "Too much speeeeed!"
+        },
+        {
+          "name": "Server Response Time",
+          "severity": 3
+        }
+      ]
+    }
+  }
+}
