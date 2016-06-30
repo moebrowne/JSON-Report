@@ -10,8 +10,15 @@ if (json_last_error() !== JSON_ERROR_NONE) {
     throw new Exception(json_last_error_msg());
 }
 
+$stats = new stdClass();
+$stats->totalItems = 0;
+$stats->totalItemsBySeverity = [];
+
 foreach ($json->categories as $categoryName => $category) {
     foreach ($category->items as $item) {
+
+        $stats->totalItems++;
+        $stats->totalItemsBySeverity[$item->severity]++;
 
         switch($item->severity) {
             case 1:
@@ -72,14 +79,14 @@ HTML;
     </div>
 
     <div class="progress">
-        <div class="progress-bar progress-bar-danger" style="width: 5%">
-            <span class="sr-only">10% Complete (danger)</span>
+        <div class="progress-bar progress-bar-danger" style="width: <?= ($stats->totalItemsBySeverity[1] / $stats->totalItems) * 100; ?>%">
+            <span class="sr-only"></span>
         </div>
-        <div class="progress-bar progress-bar-warning" style="width: 10%">
-            <span class="sr-only">20% Complete (warning)</span>
+        <div class="progress-bar progress-bar-warning" style="width: <?= ($stats->totalItemsBySeverity[2] / $stats->totalItems) * 100; ?>%">
+            <span class="sr-only"></span>
         </div>
-        <div class="progress-bar progress-bar-success" style="width: 85%">
-            <span class="sr-only">35% Complete (success)</span>
+        <div class="progress-bar progress-bar-success" style="width: <?= ($stats->totalItemsBySeverity[3] / $stats->totalItems) * 100; ?>%">
+            <span class="sr-only"></span>
         </div>
     </div>
 
