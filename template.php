@@ -15,7 +15,7 @@
 
     <div class="page-header">
         <h1><?= $json->title; ?>
-            <small><?= date('F Y'); ?></small>
+            <small><?= date('F Y', $json->date); ?></small>
         </h1>
     </div>
 
