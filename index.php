@@ -41,7 +41,7 @@ foreach ($json->categories as $categoryName => $category) {
 
         $categoryName = ucwords($categoryName);
 
-        $itemsHTML .= <<<HTML
+        $itemRowsHTML .= <<<HTML
         <tr class="table-danger">
             <td><span class="glyphicon glyphicon-{$severityIcon}" style="color: {$severityIconColour};"></span></td>
             <td>{$categoryName}</td>
@@ -103,7 +103,7 @@ HTML;
                 </tr>
                 </thead>
                 <tbody>
-                    <?= $itemsHTML; ?>
+                    <?= $itemRowsHTML; ?>
                 </tbody>
             </table>
 
