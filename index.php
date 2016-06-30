@@ -43,7 +43,7 @@ foreach ($json->categories as $categoryName => $category) {
 
         $itemRowsHTML .= <<<HTML
         <tr class="table-danger">
-            <td><span class="glyphicon glyphicon-{$severityIcon}" style="color: {$severityIconColour};"></span></td>
+            <td data-sort="{$item->severity}"><span class="glyphicon glyphicon-{$severityIcon}" style="color: {$severityIconColour};"></span></td>
             <td>{$categoryName}</td>
             <td>{$item->name}</td>
             <td>{$item->notes}</td>

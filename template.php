@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>Report</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/datatables/media/css/jquery.dataTables.min.css">
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/datatables/media/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 
@@ -32,19 +34,30 @@
     <div class="row">
         <div class="col-md-12">
 
-            <table class="table">
+            <table id="report" class="table">
                 <thead>
                 <tr>
                     <th style="width: 50px;">&nbsp;</th>
                     <th style="width: 150px;">Category</th>
-                    <th>Issue</th>
-                    <th>Notes</th>
+                    <th data-orderable="false">Issue</th>
+                    <th data-orderable="false">Notes</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?= $itemRowsHTML; ?>
                 </tbody>
             </table>
+            <script>
+                $(document).ready(function() {
+                    var table = $('#report').DataTable({
+                        "paging":   false,
+                        "filter":   false,
+                        "info":   false
+                    });
+
+                    table.fnFilter('')
+                });
+            </script>
 
         </div>
     </div>
