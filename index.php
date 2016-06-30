@@ -44,6 +44,9 @@ foreach ($json->categories as $categoryName => $category) {
         $itemToolTip = (empty($item->description) === false) ? ' <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="'.$item->description.'"></span>':'';
         $severityText = (empty($item->severity) === false) ? '<span class="glyphicon glyphicon-'.$severityIcon.'" style="color: '.$severityIconColour.';"></span>':'<small>N/A</small>';
 
+        $item->severity = empty($item->severity) ? '1000':$item->severity;
+        $item->severity = $item->severity <= 0 ? '500':$item->severity;
+
         $itemRowsHTML .= <<<HTML
         <tr class="table-danger">
             <td data-sort="{$item->severity}">{$severityText}</td>
