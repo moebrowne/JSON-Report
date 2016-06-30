@@ -21,6 +21,10 @@ foreach ($json->categories as $categoryName => $category) {
         $stats->totalItemsBySeverity[$item->severity]++;
 
         switch($item->severity) {
+            case -1: // Unchecked
+                $severityIcon = 'minus';
+                $severityIconColour = '#000000';
+                break;
             case 1:
                 $severityIcon = 'exclamation-sign';
                 $severityIconColour = '#c9302c';
@@ -34,15 +38,14 @@ foreach ($json->categories as $categoryName => $category) {
                 $severityIconColour = '#5cb85c';
                 break;
             default:
-                $severityIcon = 'minus';
-                $severityIconColour = '#000000';
+                $severityIconColour = '#B0B0B0';
                 break;
         }
 
         $categoryName = ucwords($categoryName);
 
         $itemToolTip = (empty($item->description) === false) ? ' <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="'.$item->description.'"></span>':'';
-        $severityText = (empty($item->severity) === false) ? '<span class="glyphicon glyphicon-'.$severityIcon.'" style="color: '.$severityIconColour.';"></span>':'<small>N/A</small>';
+        $severityText = (empty($item->severity) === false) ? '<span class="glyphicon glyphicon-'.$severityIcon.'" style="color: '.$severityIconColour.';"></span>':'<small style="color: '.$severityIconColour.';">N/A</small>';
 
         $item->severity = empty($item->severity) ? '1000':$item->severity;
         $item->severity = $item->severity <= 0 ? '500':$item->severity;

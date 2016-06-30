@@ -29,6 +29,9 @@
         <div class="progress-bar progress-bar-success" style="width: <?= ($stats->totalItemsBySeverity[3] / $stats->totalItems) * 100; ?>%">
             <span class="sr-only"></span>
         </div>
+        <div class="progress-bar" style="width: <?= ($stats->totalItemsBySeverity[null] / $stats->totalItems) * 100; ?>%; background-color: #CCCCCC;">
+            <span class="sr-only"></span>
+        </div>
     </div>
 
     <div class="row">
