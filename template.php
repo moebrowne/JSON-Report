@@ -14,7 +14,7 @@
 <div class="container">
 
     <div class="page-header">
-        <h1>Security Audit
+        <h1><?= $json->title; ?>
             <small><?= date('F Y'); ?></small>
         </h1>
     </div>
