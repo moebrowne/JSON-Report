@@ -54,8 +54,6 @@
                         "filter":   false,
                         "info":   false
                     });
-
-                    table.fnFilter('')
                 });
             </script>
 
