@@ -54,6 +54,8 @@
                         "filter":   false,
                         "info":   false
                     });
+
+                    $('#report [data-toggle="tooltip"]').tooltip();
                 });
             </script>
 

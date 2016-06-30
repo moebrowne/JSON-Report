@@ -41,11 +41,16 @@ foreach ($json->categories as $categoryName => $category) {
 
         $categoryName = ucwords($categoryName);
 
+        $itemToolTip = (empty($item->description) === false) ? ' <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="'.$item->description.'"></span>':'';
+
         $itemRowsHTML .= <<<HTML
         <tr class="table-danger">
             <td data-sort="{$item->severity}"><span class="glyphicon glyphicon-{$severityIcon}" style="color: {$severityIconColour};"></span></td>
             <td>{$categoryName}</td>
-            <td>{$item->name}</td>
+            <td>
+                {$item->name}
+                {$itemToolTip}
+            </td>
             <td>{$item->notes}</td>
         </tr>
 HTML;
